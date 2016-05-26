@@ -1,0 +1,62 @@
+
+openssl genrsa -des3 -out ca.orig.key 4096
+openssl rsa -in ca.orig.key -out ca.key
+openssl req -new -x509 -days 365 -key ca.key -out ca.crt
+
+openssl genrsa -des3 -out server.orig.key 1024
+openssl rsa -in server.orig.key -out server.key
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out server.crt
+
+openssl genrsa -des3 -out client.orig.key 1024
+openssl rsa -in client.orig.key -out client.key
+openssl req -new -key client.key -out client.csr
+openssl x509 -req -days 365 -in client.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out client.crt
+
+mkdir -p /etc/nginx/certs
+mv server.{key,crt} /etc/nginx/certs
+mv ca.crt /etc/nginx/certs
+
+server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name   _ ;
+        root         /usr/share/nginx/html;
+
+        ssl_certificate /etc/nginx/certs/server.crt;
+        ssl_certificate_key /etc/nginx/certs/server.key;
+        ssl_client_certificate /etc/nginx/certs/ca.crt;
+
+
+        ssl_session_cache shared:SSL:1m;
+        ssl_session_timeout  10m;
+        ssl_ciphers PROFILE=SYSTEM;
+        ssl_prefer_server_ciphers on;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+        }
+
+        location /hello {
+          #proxy_set_header Host $host;
+          #proxy_set_header X-Real-IP $remote_addr;
+          #proxy_pass http://127.0.0.1:8080;
+          
+          proxy_pass http://127.0.0.1:8080;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
