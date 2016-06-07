@@ -1,12 +1,12 @@
 install openssl-perl package first
 
-in fedora the script can be found at /usr/lib/ssl/misc/CA.pl
+in fedora the script can be found at /etc/pki/tls/misc/CA.pl
 
 # To create a CA
-/usr/lib/ssl/misc/CA.pl -newca
+/etc/pki/tls/misc/CA.pl -newca
 
 # To create a certificate, newcert.pem and signed by your CA
-/usr/lib/ssl/misc/CA.pl -newreq
-/usr/lib/ssl/misc/CA.pl -sign
+/etc/pki/tls/misc/CA.pl -newreq
+/etc/pki/tls/misc/CA.pl -sign
 
 
