@@ -1,0 +1,6 @@
+yum install libffi-devel
+yum install gcc
+yum install openssl-devel
+pip install urllib3
+pip install pyopenssl
+pip install ndg-httpsclient
