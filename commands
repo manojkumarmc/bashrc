@@ -9,6 +9,9 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 169.254.0.0     0.0.0.0         255.255.0.0     U     1002   0        0 eth1
 0.0.0.0         130.147.168.1   0.0.0.0         UG    0      0        0 eth1
 
+$ route -n | awk '{print $2}' | tail -1        << this will print the 2nd column of the output of route -n
+130.147.168.1
+
 # Get the first few lines of a file
 ===================================
 
