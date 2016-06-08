@@ -1,3 +1,16 @@
 sudo cat /var/log/audit/audit.log | grep nginx | grep denied
 sudo cat /var/log/audit/audit.log | grep nginx | grep denied | audit2allow -M nginx
 sudo semodule -i nginx.pp
+
+
+to allow permission
+--------------------------
+
+sudo setenforce permissive
+
+to get the status
+----------------
+
+sestatus
+
+
