@@ -24,5 +24,21 @@ $ yum repolist all
 
 $ yum --enable my-repo
 
+$ grep to print above and below lines of matching text
+#------------------------------------------------------
+ 
+ ifconfig | grep Hos -B1 --color      <<< Print the line before
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+
+ ifconfig | grep Hos -A1 --color      <<< Print the line after                                                                                                          
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+
+ ifconfig | grep Hos -1 --color       <<< Print line before and after the match
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+
 
 
