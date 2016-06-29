@@ -48,6 +48,11 @@ $ grep to print above and below lines of matching text
  ===================================================
  
  $ find /home/mmc/projects/ -name init*.py | xargs -I '{}' cp '{}' initialization.py
+ 
+ # OR operator in commandline
+ ============================
+ 
+ $ cat ssl.{crt,key}
 
 
 
