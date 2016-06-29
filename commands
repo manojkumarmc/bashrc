@@ -44,8 +44,9 @@ $ grep to print above and below lines of matching text
           UP LOOPBACK RUNNING  MTU:65536  Metric:1
           
  
- copy the file after finding to a specified filename
- ---------------------------------------------------
+ # copy the file after finding to a specified filename
+ ===================================================
+ 
  $ find /home/mmc/projects/ -name init*.py | xargs -I '{}' cp '{}' initialization.py
 
 
