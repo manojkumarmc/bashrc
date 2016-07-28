@@ -1,0 +1,27 @@
+Open up ports for selected services
+===================================
+
+iptables -A INPUT -i lo -j ACCEPT
+
+Now we can allow web server traffic:
+
+iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+
+Now, let's allow users use our SMTP servers:
+
+iptables -A INPUT -p tcp -m tcp --dport 25 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 465 -j ACCEPT
+
+Allow the users read email on their server:
+
+iptables -A INPUT -p tcp -m tcp --dport 110 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 995 -j ACCEPT
+
+Allow IMAP mail protocol:
+
+iptables -A INPUT -p tcp -m tcp --dport 143 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 993 -j ACCEPT
+
+SSH:
+iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
