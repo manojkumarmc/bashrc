@@ -1,7 +1,7 @@
 #### config file
 ```
 	/etc/sysconfig/selinux
-'''
+```
 #### Commands
 ```
 getenforce
