@@ -1,0 +1,11 @@
+Create an image of 10 GB. Now we can use this file as harddisk in our qemu boot:
+=================================================================================
+$ qemu-img create mydisk.img 10G
+
+start the iso bound with img file
+====================================
+$ qemu-system-x86_64 -boot d -cdrom image.iso -m 512 -hda mydisk.img
+
+Now, run the image
+=====================
+$ qemu-kvm mydisk.img -m 1024
