@@ -1,0 +1,16 @@
+# service NetworkManager stop
+Redirecting to /bin/systemctl stop NetworkManager.service
+# chkconfig NetworkManager off
+
+BOOTPROTO="static"
+IPADDR=192.168.1.105
+NETMASK=255.255.255.0
+NM_CONTROLLED=no
+You also need:
+
+# Specify the default gateway
+GATEWAY=<ip of your router>
+# Bring the interface up on boot
+ONBOOT=yes
+# Specify your dns server
+DNS1=<ip of your router>
