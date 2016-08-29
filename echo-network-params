@@ -1,0 +1,6 @@
+echo        -i $(cat /etc/sysconfig/network-scripts/ifcfg-eno16780032 | grep IPADDR | cut -d= -f2 | sed 's/"//g') \
+            -d $(cat /etc/sysconfig/network-scripts/ifcfg-eno16780032 | grep DNS1 | cut -d= -f2 | sed 's/"//g') \
+            -n $(route -n | tail -1 | awk '{print $3}') \
+            -g $(cat /etc/sysconfig/network-scripts/ifcfg-eno16780032 | grep GATEWAY | cut -d= -f2 | sed 's/"//g') \
+            -s $1 \
+            -e $2
