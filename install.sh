@@ -12,5 +12,13 @@ make && make altinstall
 
 Delete package without removing dependencies
 ---------------------------------------------
-
 rpm -e --nodeps <package-name>
+
+To find macros
+---------------
+rpm --eval '%{macro_name}'
+
+To list all macros
+------------------
+rpm --showrc
+
