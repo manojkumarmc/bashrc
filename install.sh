@@ -9,3 +9,8 @@ tar -xzvf Python-3.5.0.tgz
 cd Python-3.5.0
 ./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
 make && make altinstall
+
+Delete package without removing dependencies
+---------------------------------------------
+
+rpm -e --nodeps <package-name>
